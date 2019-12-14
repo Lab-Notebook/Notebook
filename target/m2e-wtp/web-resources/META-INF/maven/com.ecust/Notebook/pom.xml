@@ -113,7 +113,7 @@
 			<version>4.3.14.RELEASE</version>
 		</dependency>
 
-		<!-- redis客户端:Jedis -->
+		<!-- redis客户端:Jedis 这我也不知道是啥 加着吧-->
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
@@ -141,7 +141,8 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1-2</version>
 		</dependency>
-
+		
+		<!-- jstl jsp标准标签库-->
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>jstl-api</artifactId>
@@ -157,7 +158,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- JSTL标签库 -->
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jstl-impl</artifactId>
@@ -177,6 +177,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- jackson 解析json的开源包 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>

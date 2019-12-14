@@ -18,7 +18,7 @@ public class DispatcherController {
 	@RequestMapping("myexpnotebook")
 	public String myExpNotebook() {
 		logger.error("myexpnotebook");
-		return "my_exp_notebook";
+		return "student/my_exp_notebook";
 		
 	}
 	/**
@@ -28,7 +28,7 @@ public class DispatcherController {
 	@RequestMapping("applyexpnotebook")
 	public String applyExpNotebook() {
 		logger.error("applyexpnotebook");
-		return "apply_exp_notebook";
+		return "student/apply_exp_notebook";
 		
 	}
 	
@@ -39,6 +39,6 @@ public class DispatcherController {
 	@RequestMapping("application")
 	public String application(){
 		logger.error("application");
-		return null;
+		return "student/application";
 	}
 }

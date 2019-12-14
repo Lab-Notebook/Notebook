@@ -1,3 +1,4 @@
+<!-- 登录jsp，即实验记录本网页打开第一个页面 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

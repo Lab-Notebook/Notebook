@@ -34,7 +34,7 @@ public class LoginController {
 	@RequestMapping("login")
 	public String login(HttpSession session) {
 		logger.error("登录成功！"+session.getAttribute("user"));
-		return "main";
+		return "student/student_main";
 
 	}
 	/**

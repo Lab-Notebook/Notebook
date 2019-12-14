@@ -1,13 +1,12 @@
 package com.ecust.entity;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
-
 import lombok.Data;
+/**
+ * 实验记录本申请实体类
+ * @author Dell
+ *
+ */
 @Data
 @Component
 public class Application {

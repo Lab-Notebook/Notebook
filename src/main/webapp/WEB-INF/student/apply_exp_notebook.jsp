@@ -1,3 +1,4 @@
+<!-- 学生实验记录本申请列表界面jsp-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>

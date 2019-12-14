@@ -1,7 +1,11 @@
 package com.ecust.entity;
 
 import org.springframework.stereotype.Component;
-
+/**
+ * 项目实体类
+ * @author Dell
+ *
+ */
 @Component
 public class Project {
 	private int projectId;
