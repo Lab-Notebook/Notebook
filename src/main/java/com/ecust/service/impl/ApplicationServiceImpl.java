@@ -12,9 +12,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.ecust.controller.BookController;
 import com.ecust.entity.Application;
+import com.ecust.entity.Page;
 import com.ecust.entity.Users;
 import com.ecust.mapper.ApplicationMapper;
 import com.ecust.service.ApplicationService;
@@ -28,8 +31,9 @@ public class ApplicationServiceImpl implements ApplicationService{
 	private static Logger logger=Logger.getLogger(BookController.class);
 	
 	
-	public List<Application> showApplications(Users student) {
-		List<Application> list = applicationMapper.selectByStudentId(student);
+	public List<Application> showApplications(int studentId,Page page) {
+		int pageStart=(page.getPageNumber()-1)*10;
+		List<Application> list = applicationMapper.selectByStudentId(studentId,pageStart,page.getPageSize());
 		if (list==null) {
 			logger.error("in applicationService:list==null");
 		}
@@ -59,6 +63,12 @@ public class ApplicationServiceImpl implements ApplicationService{
 			logger.error("提交申请单失败");
 			return false;
 		}
+	}
+
+
+	@Override
+	public int getApplicationCount(int studentId) {
+		return applicationMapper.selectCount(studentId);
 	}
 
 

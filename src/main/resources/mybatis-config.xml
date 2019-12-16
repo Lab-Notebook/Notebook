@@ -18,6 +18,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <!-- 取别名，比如一个方法中返回值类型是User，
              配置了这个在 parameterType属性中就不用写User的全类名，
             直接写User即可，可以在这里配置，也可以再spring配置文件中配置 -->
-    <!-- <typeAliases> <package name="com.zhu.smm.entity"/> </typeAliases> -->
 
 </configuration>

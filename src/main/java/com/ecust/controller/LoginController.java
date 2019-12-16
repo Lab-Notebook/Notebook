@@ -47,7 +47,6 @@ public class LoginController {
 	@RequestMapping("checklogin")
 	public boolean checkLogin(Users user,HttpServletRequest req,String permission)
 	{
-		//String permission=req.getParameter("permission");
 		logger.error("checkLoginPermission:"+permission);
 		switch (permission) {
 		case "student":
@@ -57,7 +56,7 @@ public class LoginController {
 				return false;
 			}
 			else {
-				req.getSession().setAttribute("id", user.getId());
+				req.getSession().setAttribute("id", student.getId());
 				req.getSession().setAttribute("permission","student");
 				req.getSession().setAttribute("user", student);
 				return true;

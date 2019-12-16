@@ -3,12 +3,13 @@
 <mapper namespace="com.ecust.mapper.ApplicationMapper">
 	
 	<resultMap type="application" id="appMap">
-	<result property="projectId" column="projectId"/>
+	<result property="projectId" column="project_id"/>
 		<association property="project" select="com.ecust.mapper.ProjectMapper.selectById" column="project_id">
 		</association>
 	</resultMap>
 	
 	<select id="selectByStudentId" resultMap="appMap">
-		select project_id,reason,DATE_FORMAT(apply_time,"%Y-%m-%d %T"),apply_status,remark from application where student_id=#{id}
+		select project_id,reason,DATE_FORMAT(apply_time,"%Y-%m-%d %T"),apply_status,remark from application 
+		where student_id=#{param1} limit #{param2},#{param3};
 	</select>
 </mapper>

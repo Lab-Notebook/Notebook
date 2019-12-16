@@ -35,7 +35,7 @@
 				$.post("submitapplication",{"project":project,"reason":reason,"remark":remark},function(success){
 					if(success){
 						alert("提交申请成功！");
-		                self.location = document.referrer;
+		                self.location = document.referrer;//回到上一页(实验本申请列表)，并刷新
 					}
 						
 					else{

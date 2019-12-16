@@ -11,12 +11,15 @@ import com.ecust.entity.Users;
 
 public interface ApplicationMapper {
 	
-	List<Application>selectByStudentId(Users student);
+	List<Application>selectByStudentId(int studentId,int pageStart,int pageSize);
 	
-	@Select("select project_id from project where name=#{0}")
+	@Select("select project_id from project where name=#{0};")
 	int selectIdByName(String name);
 	
 	@Insert("insert into application values(default,#{projectId},#{reason},now(),default,#{remark},#{studentId});")
 	@Options(keyProperty = "applicationId")
 	int insertIntoApplication(Application application);
+	
+	@Select("select count(*) from application where student_id=#{0}")
+	int selectCount(int studentId);
 }
