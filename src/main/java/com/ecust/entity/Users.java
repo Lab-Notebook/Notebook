@@ -18,6 +18,6 @@ public class Users {
 	private String phoneNo;//电话
 	private String sex;//性别
 	private String email;//邮箱
-	
+	private Institute institute;
 	
 }

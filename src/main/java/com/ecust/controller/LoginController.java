@@ -18,10 +18,13 @@ import com.ecust.service.StudentService;
  * @author Dell
  *
  */
+import com.ecust.service.TeacherService;
 @Controller
 public class LoginController {
 	@Resource
 	private StudentService studentServiceImpl;
+	@Resource
+	private TeacherService teacherServiceImpl;
 	/**Log4j 用于项目发布到tomcat中后在控制台输出调试信息**/
 	private static Logger logger = Logger.getLogger(LoginController.class);
 
@@ -33,8 +36,21 @@ public class LoginController {
 	 */
 	@RequestMapping("login")
 	public String login(HttpSession session) {
-		logger.error("登录成功！"+session.getAttribute("user"));
-		return "student/student_main";
+		if (session.getAttribute("user")!=null) {
+			logger.error("登录成功！"+(String)session.getAttribute("permission"));
+			switch ((String)session.getAttribute("permission")) {
+			case "student":
+				return "student/main";
+			case "teacher":
+				return "teacher/main";
+			default:
+				return "redirect:login.jsp";
+			}
+			
+		}
+		else {
+			return "redirect:login.jsp";
+		}
 
 	}
 	/**
@@ -61,22 +77,26 @@ public class LoginController {
 				req.getSession().setAttribute("user", student);
 				return true;
 			}
-//		case "teacher":
-//			Users teacher=studentServiceImpl.login(user);
-//			if (teacher == null) {
-//				return false;
-//			}
-//			else {
-//				return true;
-//			}
-//		case "admin":
-//			Users admin=studentServiceImpl.login(user);
-//			if (admin == null) {
-//				return false;
-//			}
-//			else {
-//				return true;
-//			}
+		case "teacher":
+			Users teacher=teacherServiceImpl.login(user);
+			if (teacher == null) {
+				logger.error("登录失败！");
+				return false;
+			}
+			else {
+				req.getSession().setAttribute("id", teacher.getId());
+				req.getSession().setAttribute("permission","teacher");
+				req.getSession().setAttribute("user", teacher);
+				return true;
+			}
+		case "admin":
+			Users admin=studentServiceImpl.login(user);
+			if (admin == null) {
+				return false;
+			}
+			else {
+				return true;
+			}
 		default:
 			return false;
 		}

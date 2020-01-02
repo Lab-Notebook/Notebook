@@ -53,7 +53,6 @@
 				});							//ajax请求结束
 				if(flag==false)return flag;
 				else{
-					//return true;
 					$.ajax({					//发送ajax请求 请求服务器验证用户名和密码
 						url:"checklogin",
 						type:"post",
@@ -90,8 +89,8 @@
 	<form action="login" method="post" >
 		<fieldset>
 		<legend>登录</legend>
-		用户名:<br> <input type="text" name="username" id="username" value="123"/><br /><br>
-		密码:<br> <input type="password" name="password" id="password" value="111"/><br /><br>
+		用户名:<br> <input type="text" name="username" id="username" value="10170861"/><br /><br>
+		密码:<br> <input type="password" name="password" id="password" value="123456"/><br /><br>
 		选择权限:<br><select id="permission" name="permission">
 		<option value="student">学生</option>
 		<option value="teacher">教师</option>

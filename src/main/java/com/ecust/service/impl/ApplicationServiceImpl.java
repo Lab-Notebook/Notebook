@@ -20,12 +20,15 @@ import com.ecust.entity.Application;
 import com.ecust.entity.Page;
 import com.ecust.entity.Users;
 import com.ecust.mapper.ApplicationMapper;
+import com.ecust.mapper.ProjectMapper;
 import com.ecust.service.ApplicationService;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService{
 	@Resource
 	private ApplicationMapper applicationMapper;
+	@Resource
+	private ProjectMapper projectMapper;
 	@Autowired
 	private ApplicationContext applicationContext;
 	private static Logger logger=Logger.getLogger(BookController.class);
@@ -34,12 +37,8 @@ public class ApplicationServiceImpl implements ApplicationService{
 	public List<Application> showApplications(int studentId,Page page) {
 		int pageStart=(page.getPageNumber()-1)*10;
 		List<Application> list = applicationMapper.selectByStudentId(studentId,pageStart,page.getPageSize());
-		if (list==null) {
-			logger.error("in applicationService:list==null");
-		}
 		for (Application application : list) {
 			logger.error(application);
-		   
 		}
 		return list;
 	}
@@ -47,11 +46,11 @@ public class ApplicationServiceImpl implements ApplicationService{
 
 	@Override
 	public boolean submitApplications(int studentId,String project, String reason, String remark) {
-		int projectId=applicationMapper.selectIdByName(project);
+		int projectId=projectMapper.selectIdByName(project);
 		Application application = applicationContext.getBean("application",Application.class);
 		application.setStudentId(studentId);
 		application.setProjectId(projectId);
-		application.setReason(reason);
+		application.setApplyReason(reason);
 		if(remark!="")
 			application.setRemark(remark);
 		int success = applicationMapper.insertIntoApplication(application);
@@ -69,6 +68,20 @@ public class ApplicationServiceImpl implements ApplicationService{
 	@Override
 	public int getApplicationCount(int studentId) {
 		return applicationMapper.selectCount(studentId);
+	}
+
+	public int getUncheckedCount(int teacherId) {
+		return applicationMapper.selectUncheckedCount(teacherId);
+	}
+	
+	@Override
+	public List<Application> showUncheckedApplications(int teacherId, Page page) {
+		int pageStart=(page.getPageNumber()-1)*10;
+		List<Application> list = applicationMapper.selectByProjectId(teacherId,pageStart,page.getPageSize());
+		for (Application application : list) {
+			logger.error(application);
+		}
+		return list;
 	}
 
 

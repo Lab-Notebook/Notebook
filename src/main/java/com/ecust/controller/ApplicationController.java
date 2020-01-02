@@ -38,11 +38,24 @@ public class ApplicationController {
 	private ApplicationContext applicationContext;
 	private static Logger logger=Logger.getLogger(BookController.class);
 	
-
+	@ModelAttribute()
+	public String isLogin(HttpSession session) {
+		Users user=(Users)session.getAttribute("user");
+		if (user==null) {
+			return "redirect:login.jsp";
+		}
+		return null;
+	}
 	
+	/**
+	 * 显示该学生拥有的所有记录本申请
+	 * @param pageNumber
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping("showapplication")
-	public Page showApplications(int pageNumber,HttpSession session){
+	@RequestMapping("student/showapplication")
+	public Page showStudentApplications(int pageNumber,HttpSession session){
 		int studentId=(int) session.getAttribute("id");
 		Page page = applicationContext.getBean("page",Page.class);
 		page.setPageNumber(pageNumber);
@@ -50,9 +63,32 @@ public class ApplicationController {
 		Page newPage = applicationContext.getBean("page",Page.class);
 		newPage.setCount(applicationServiceImpl.getApplicationCount(studentId));
 		newPage.setList(applications);
-		newPage.setPageNumber(page.getPageNumber());		
+		newPage.setPageNumber(page.getPageNumber());	
 		return newPage;
 	}
+	
+	/**
+	 * 指导教师查看实验记录本申请单并审核
+	 * @param pageNumber
+	 * @param session
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("teacher/showapplication")
+	public Page showTeacherApplications(int pageNumber,HttpSession session){
+		int teacherId=(int) session.getAttribute("id");
+		Page page = applicationContext.getBean("page",Page.class);
+		page.setPageNumber(pageNumber);
+		List<Application> applications = applicationServiceImpl.showUncheckedApplications(teacherId, page);
+		Page newPage = applicationContext.getBean("page",Page.class);
+		newPage.setCount(applicationServiceImpl.getUncheckedCount(teacherId));
+		newPage.setCount(20);
+		newPage.setList(applications);
+		newPage.setPageNumber(page.getPageNumber());	
+		session.setAttribute("applications", applications);
+		return newPage;
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("submitapplication")
@@ -71,4 +107,6 @@ public class ApplicationController {
 		session.setAttribute("applicationCount", count);
 		return count;
 	}
+	
+	
 }

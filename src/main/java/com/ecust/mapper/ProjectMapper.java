@@ -14,9 +14,19 @@ public interface ProjectMapper {
 	 */
 	Project selectById(int projectId);
 	
-	
+	/**
+	 * 选择Project表中的所有项目
+	 * @return
+	 */
 	@Select("select * from project")
 	List<Project>selectAll();
 	
+	/**
+	 * 通过Project名找到对应id
+	 * @param name
+	 * @return
+	 */
+	@Select("select project_id from project where name=#{0};")
+	int selectIdByName(String name);
 	
 }

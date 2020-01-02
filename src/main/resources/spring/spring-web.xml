@@ -21,8 +21,7 @@
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler/>
 	
-	<context:component-scan
-		base-package="com.ecust.controller"/>
+	<context:component-scan base-package="com.ecust.controller"/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property
@@ -32,6 +31,15 @@
 			name="suffix"
 			value=".jsp"></property>
 	</bean>
+	
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!--上传的最大限制-->
+		<property name="maxUploadSize" value="209715200" />
+		 <!--默认编码-->
+		<property name="defaultEncoding" value="UTF-8" />
+		 <!--上传文件的解析-->
+		<property name="resolveLazily" value="true" />
+    </bean> 
 	 <!-- 静态资源 -->
     <mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
     <mvc:resources location="/images/" mapping="/images/**"></mvc:resources>

@@ -1,0 +1,67 @@
+/*各个功能模块界面的css(如申请实验记录本功能等)*/
+* {
+	box-sizing: border-box;
+	cursor:url("http://localhost:8081/Notebook/images/cursor.ico"),auto;
+}
+
+body{
+	font-family: STHeiti, Arial, Helvetica, Verdana, sans-serif;
+	font-size: large;
+	text-align:center
+}
+
+button {
+	margin-top: 0px;
+	height: 40px;
+	text-decoration: none;
+	padding: 15px 30px 40px 30px;
+	font-size: 20px;
+	font-family: 微软雅黑, 宋体, Arial, Helvetica, Verdana, sans-serif;
+	font-weight: bold;
+	border: 2px solid;
+	border-color: black;
+	border-radius: 6px;
+	-webkit-transition: all linear 0.30s;
+	-moz-transition: all linear 0.30s;
+	transition: all linear 0.30s;
+}
+
+button.black {
+	color: white;
+	background: black;
+}
+
+button.white {
+	color: black;
+	background: white;
+}
+
+/* 头部标题 */
+.header {
+	padding: 30px;
+	text-align: center;
+	font-size: 35px;
+
+}
+div{
+	padding: 10px;
+}
+select,input{
+	width: 20%;
+	height: 45px;
+	padding: 5px 5px;
+	font-size: large;
+	margin: 8px 0;
+	display: inline-block;
+}
+legend{
+	 margin: 0 auto;
+     float: none;
+}
+fieldset{
+	width:50%;
+	position: absolute;
+	left: 400px;
+	right:100px;
+	
+}

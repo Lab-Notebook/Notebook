@@ -18,11 +18,23 @@ public class BookServiceImpl implements BookService{
 	@Resource
 	private BookMapper bookMapper;
 	private static Logger logger=Logger.getLogger(BookController.class);
+	
+	@Override
 	public List<Book> showBooks(Users student) {
 		
 		List<Book> list = bookMapper.selectByStudentId(student);
-		logger.error("list:"+list.get(0));
+		logger.error("list:"+list);
 		return list;
+	}
+	
+	@Override
+	public int createBook(Book book) {
+		return bookMapper.updateByBookId(book);
+	}
+
+	@Override
+	public int deleteBook(Book book) {
+		return bookMapper.deleteByBookId(book);
 	}
 
 	

@@ -13,13 +13,16 @@ public interface ApplicationMapper {
 	
 	List<Application>selectByStudentId(int studentId,int pageStart,int pageSize);
 	
-	@Select("select project_id from project where name=#{0};")
-	int selectIdByName(String name);
+	List<Application>selectByProjectId(int teacherId,int pageStart,int pageSize);
 	
-	@Insert("insert into application values(default,#{projectId},#{reason},now(),default,#{remark},#{studentId});")
-	@Options(keyProperty = "applicationId")
+	@Insert("insert into book values(default,null,now(),null,default,"
+			+ "null,#{remark},#{applyReason},#{projectId},#{studentId});")
 	int insertIntoApplication(Application application);
 	
 	@Select("select count(*) from application where student_id=#{0}")
 	int selectCount(int studentId);
+	
+	@Select("select count(*) from application a,t_p b "
+			+ "where a.project_id=b.project_id and b.teacher_id=#{param1}")
+	int selectUncheckedCount(int teacherId);
 }

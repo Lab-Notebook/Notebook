@@ -9,4 +9,10 @@ public interface StudentService {
 	 * @return
 	 */
 	Users login(Users student);
+	
+	/**
+	 * 对学生信息进行更改
+	 * @return
+	 */
+	int changeInformation(Users student);
 }

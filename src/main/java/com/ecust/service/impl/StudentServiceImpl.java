@@ -21,4 +21,9 @@ public class StudentServiceImpl implements StudentService{
 		return studentMapper.selectByUserPwd(student);
 	}
 
+	@Override
+	public int changeInformation(Users student) {
+		return studentMapper.updateById(student);
+	}
+
 }

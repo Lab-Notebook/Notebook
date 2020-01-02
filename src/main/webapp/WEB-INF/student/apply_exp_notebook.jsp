@@ -15,7 +15,7 @@ var pageSize;
 var pageNumber=1;
 function getapp(){
 	$.ajax({
-		url:"showapplication",
+		url:"student/showapplication",
 		type:"post",
 		data:{"pageNumber":pageNumber},
 		async:false,
@@ -26,7 +26,7 @@ function getapp(){
 				result+="<tr>";
 				result+="<td>"+(i+1)+"</td>";
 				result+="<td>"+list[i].project.name+"</td>";
-				result+="<td>"+list[i].reason+"</td>";
+				result+="<td>"+list[i].applyReason+"</td>";
 				result+="<td>"+list[i].applyTime+"</td>";
 				result+="<td>"+list[i].applyStatus+"</td>";
 				result+="<td>"+list[i].remark+"</td>";
@@ -82,13 +82,14 @@ $(function(){
 		<tbody id="apply_table"></tbody>
 		<tfoot></tfoot>
 	</table>
-	<div>
+	<div><br>
 	当前第<span id="pagenum"></span>页
-	</div>
+	</div><br><br>
 	<button id="last">上一页</button>
-	<button id="next">下一页</button>
+	<button id="next">下一页</button><br><br>
 	<form action="application">
 		<button>申请实验记录本</button>
-	</form>
+	</form><br><br>
+	<a href="login">回到主界面</a>
 </body>
 </html>
