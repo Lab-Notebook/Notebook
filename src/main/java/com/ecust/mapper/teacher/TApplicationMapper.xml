@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecust.mapper.teacher.TApplicationMapper">
+	
+	<resultMap type="application" id="map1">
+	<result property="projectId" column="project_id"/>
+		<association property="project" select="com.ecust.mapper.ProjectMapper.selectById" column="project_id">
+		</association>
+	</resultMap>
+	
+	<select id="selectByStudentId" resultMap="map1">
+		select project_id,apply_reason,DATE_FORMAT(apply_time,"%Y-%m-%d %T") applyTime,remark from application 
+		where student_id=#{param1} limit #{param2},#{param3};
+	</select>
+	
+	<resultMap type="application" id="map2">
+		<result column="book_id" property="id"/>
+		<result column="apply_reason" property="applyReason"/>
+		<result column="apply_time" property="applyTime"/>
+		<result column="remark" property="remark"/>
+		<association property="project" javaType="project" >
+			<result column="pname" property="name"/>
+		</association>
+		<association property="student" javaType="users" >
+			<result column="sname" property="name"/>
+			<result column="username" property="username"/>
+		</association>
+	</resultMap>
+	<select id="selectByProjectId" resultMap="map2">
+		select a.*,b.name pname,c.name sname,c.username username 
+		from application a,project b,student c,t_p d 
+		where a.project_id=d.project_id and a.student_id=c.id
+		and d.project_id=b.project_id
+		and d.teacher_id=#{param1} limit #{param2},#{param3}
+	</select>
+</mapper>

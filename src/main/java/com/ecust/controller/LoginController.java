@@ -12,13 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ecust.entity.Users;
-import com.ecust.service.StudentService;
-/**
- * 登录控制器
- * @author Dell
- *
- */
-import com.ecust.service.TeacherService;
+import com.ecust.service.student.StudentService;
+import com.ecust.service.teacher.TeacherService;
 @Controller
 public class LoginController {
 	@Resource

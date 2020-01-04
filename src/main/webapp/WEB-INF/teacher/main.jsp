@@ -14,8 +14,8 @@
 		$("#my_exp_notebook").click(function() {
 			$(location).attr('href', 'checkapplication');
 		});
-		$("#apply_exp_notebook").click(function() {
-			$(location).attr('href', 'applyexpnotebook');
+		$("#check_record").click(function() {
+			//跳转到审批记录界面
 		});
 	});
 </script>
@@ -33,7 +33,7 @@
 			title="查看记录本申请" />
 		<button id="my_exp_notebook" class="black" >查看记录本申请</button>
 		<img src="images/pencil.png" width="70" title="审批实验记录" />
-		<button id="apply_exp_notebook" class="white">审批实验记录</button>
+		<button id="check_record" class="white">审批实验记录</button>
 	</div>
 	<br><br>
 	<a href="http://localhost:8081/Notebook/">退出登录</a>
