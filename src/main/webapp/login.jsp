@@ -28,6 +28,7 @@
 			var code = $("#code").val();
 			if (code=="") {
 				alert("请输入验证码！");
+// 测试一下
 				return false;
 			} 
 			else if (username == "" || password == "") {
